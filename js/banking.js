@@ -25,6 +25,7 @@ function updateBalance(inputAmmount, isAdd) {
 
 
 
+
 // update  diposite total 
 
 document.getElementById('diposit-button').addEventListener('click', function () {
@@ -32,8 +33,14 @@ document.getElementById('diposit-button').addEventListener('click', function () 
     // const ammountOfNewdipositinText = dipositeInputFild.value;
     // const ammountOfNewdipositInFlotingNumber = parseFloat(ammountOfNewdipositinText);
     const dipositInputValue = getInputValue('diposit-fild');
-    updateTotalAmmount(dipositInputValue, 'diposite-total-ammount');
-    updateBalance(dipositInputValue, true);
+    if (dipositInputValue > 0) {
+        updateTotalAmmount(dipositInputValue, 'diposite-total-ammount');
+        updateBalance(dipositInputValue, true);
+    }
+    else {
+        alert('Please input valid ammount')
+    }
+
     // const previousTotalDipositeAmmountText = document.getElementById('diposite-total-ammount').innerText;
     // const previousTotalDipositeAmmountFloatingNumber = parseFloat(previousTotalDipositeAmmountText);
     // document.getElementById('diposite-total-ammount').innerText = previousTotalDipositeAmmountFloatingNumber + dipositInputValue;
@@ -57,9 +64,20 @@ document.getElementById('withdrow-button').addEventListener('click', function ()
     // const widthrowInputFild = document.getElementById('withdrow-fild');
     // const widthrowInputFildText = widthrowInputFild.value;
     // const widthrowAmmount = parseFloat(widthrowInputFildText);
+    const totalBalance = parseFloat(document.getElementById('total-balance').innerText);
     const widthrowAmmount = getInputValue('withdrow-fild');
-    updateTotalAmmount(widthrowAmmount, 'withdrow-total-ammount')
-    updateBalance(widthrowAmmount, false);
+    if (widthrowAmmount > 0 && widthrowAmmount < totalBalance) {
+        updateTotalAmmount(widthrowAmmount, 'withdrow-total-ammount');
+        updateBalance(widthrowAmmount, false);
+    }
+    else {
+        if (widthrowAmmount > widthrowAmmount < totalBalance) {
+            alert("Your total balance is= " + totalBalance + "you can't withdrow more then you have");
+        }
+        else {
+            alert('Please input valid ammount');
+        }
+    }
 
     // const previusWithdeowTotalText = document.getElementById('withdrow-total-ammount').innerText;
     // const previusWithdeowTotalFloatNumber = parseFloat(previusWithdeowTotalText);
