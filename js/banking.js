@@ -71,8 +71,8 @@ document.getElementById('withdrow-button').addEventListener('click', function ()
         updateBalance(widthrowAmmount, false);
     }
     else {
-        if (widthrowAmmount > widthrowAmmount < totalBalance) {
-            alert("Your total balance is= " + totalBalance + "you can't withdrow more then you have");
+        if (widthrowAmmount < totalBalance) {
+            alert("Your total balance is= " + totalBalance + " you can't withdrow more then you have");
         }
         else {
             alert('Please input valid ammount');
